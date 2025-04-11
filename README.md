@@ -33,6 +33,7 @@ This project simulates a communication system between **citizens** and **emergen
 
 ```bash
 pip install pika
+```
 
 ```
 
