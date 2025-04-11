@@ -35,8 +35,6 @@ This project simulates a communication system between **citizens** and **emergen
 pip install pika
 ```
 
-```
-
 ---
 
 
@@ -75,3 +73,4 @@ Este projeto simula um sistema de comunicação entre **cidadãos** e **centrais
 
 ```bash
 pip install pika
+```
