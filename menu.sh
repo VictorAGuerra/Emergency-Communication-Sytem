@@ -1,4 +1,5 @@
 #!/bin/bash
+source venv/bin/activate
 
 echo "=== CENTRAIS DE EMERGÊNCIA ==="
 echo "Escolha o consumidor para iniciar:"

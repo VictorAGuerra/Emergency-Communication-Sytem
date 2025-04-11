@@ -1,5 +1,6 @@
 package com.emergencia.centrais.config;
 
+import java.util.UUID;
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -7,15 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-    // Exchange
     public static final String EXCHANGE_NAME = "emergencia-topic-exchange";
 
-    // Filas
-    public static final String POLICIA_QUEUE = "fila-policia";
-    public static final String BOMBEIROS_QUEUE = "fila-bombeiros";
-    public static final String AMBULANCIA_QUEUE = "fila-ambulancia";
-
-    // Routing Keys
     public static final String POLICIA_KEY = "emergencia.policia";
     public static final String BOMBEIROS_KEY = "emergencia.bombeiros";
     public static final String AMBULANCIA_KEY = "emergencia.ambulancia";
@@ -27,17 +21,17 @@ public class RabbitConfig {
 
     @Bean
     public Queue filaPolicia() {
-        return new Queue(POLICIA_QUEUE, true);
+        return new Queue("fila-policia-" + UUID.randomUUID(), true, true, true);
     }
 
     @Bean
     public Queue filaBombeiros() {
-        return new Queue(BOMBEIROS_QUEUE, true);
+        return new Queue("fila-bombeiros-" + UUID.randomUUID(), true, true, true);
     }
 
     @Bean
     public Queue filaAmbulancia() {
-        return new Queue(AMBULANCIA_QUEUE, true);
+        return new Queue("fila-ambulancia-" + UUID.randomUUID(), true, true, true);
     }
 
     @Bean
@@ -55,4 +49,3 @@ public class RabbitConfig {
         return BindingBuilder.bind(filaAmbulancia).to(exchange).with(AMBULANCIA_KEY);
     }
 }
-

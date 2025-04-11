@@ -8,6 +8,7 @@ connection = pika.BlockingConnection(params)
 channel = connection.channel()
 
 exchange_name = 'emergencia-topic-exchange'
+
 channel.exchange_declare(exchange=exchange_name, exchange_type='topic', durable=True)
 
 tipos_validos = {
@@ -34,7 +35,6 @@ descricao = input("Descreva a situação: ").strip()
 tipo_emergencia = tipos_validos[tipo]
 routing_key = f"emergencia.{tipo_emergencia}"
 
-# Adiciona data e hora no formato desejado
 data_hora = datetime.now().strftime("%d/%m/%Y - %H:%M")
 mensagem = f"[{data_hora}] [{tipo_emergencia.upper()}] EMERGÊNCIA EM: {local} | {descricao}"
 
